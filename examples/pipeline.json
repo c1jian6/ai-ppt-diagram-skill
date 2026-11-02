@@ -1,0 +1,25 @@
+{
+  "title": "CI/CD pipeline",
+  "caption": "Six stages from push to production; a failed gate sends the change back",
+  "theme": "ocean",
+  "direction": "LR",
+  "nodesep": 0.42,
+  "ranksep": 0.5,
+  "nodes": {
+    "push": {"label": "Push", "tone": "accent", "sub": "git push"},
+    "build": {"label": "Build", "tone": "primary", "sub": "docker build"},
+    "unit": {"label": "Unit tests", "tone": "neutral", "sub": "12 s"},
+    "e2e": {"label": "E2E tests", "tone": "neutral", "sub": "3 min"},
+    "scan": {"label": "Security gate", "shape": "diamond", "tone": "warn"},
+    "deploy": {"label": "Deploy", "shape": "stadium", "tone": "success", "sub": "canary 10%"}
+  },
+  "edges": [
+    {"from": "push", "to": "build"},
+    {"from": "build", "to": "unit"},
+    {"from": "unit", "to": "e2e"},
+    {"from": "e2e", "to": "scan"},
+    {"from": "scan", "to": "deploy", "label": "pass"},
+    {"from": "scan", "to": "build", "label": "fail", "style": "dashed", "tone": "danger", "constraint": false}
+  ],
+  "notes": "CI/CD pipeline demo."
+}

@@ -1,0 +1,22 @@
+{
+  "title": "中文流程示例",
+  "kicker": "CJK",
+  "caption": "中文标签自动使用系统里的中文字体，宽度按真实字宽计算",
+  "theme": "ocean",
+  "direction": "TB",
+  "nodes": {
+    "start": {"label": "需求提交", "shape": "stadium", "tone": "accent"},
+    "check": {"label": "方案评审", "shape": "diamond", "tone": "warn"},
+    "dev": {"label": "开发实现", "tone": "neutral", "sub": "2 周迭代"},
+    "test": {"label": "联调验收", "tone": "neutral"},
+    "done": {"label": "上线交付", "shape": "stadium", "tone": "success"}
+  },
+  "edges": [
+    {"from": "start", "to": "check"},
+    {"from": "check", "to": "dev", "label": "通过"},
+    {"from": "check", "to": "start", "label": "驳回", "style": "dashed", "tone": "danger", "constraint": false},
+    {"from": "dev", "to": "test"},
+    {"from": "test", "to": "done"}
+  ],
+  "notes": "验证中文标签与字体回退。"
+}

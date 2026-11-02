@@ -1,0 +1,49 @@
+{
+  "layout": "panels",
+  "title": "Data platform in four columns",
+  "caption": "Ingest feeds storage, compute reads storage, and serving exposes the results",
+  "theme": "ocean",
+  "tones": {
+    "in": {"fill": "#E8F2FC", "stroke": "#2E75B6", "font": "#1B3A57"},
+    "store": {"fill": "#FDF0E4", "stroke": "#C55A11", "font": "#6B3410"},
+    "core": {"fill": "#5B2D8E", "stroke": "#3E1D66", "font": "#FFFFFF"},
+    "out": {"fill": "#E4F3F2", "stroke": "#2F8F8A", "font": "#10403E"}
+  },
+  "panels": [
+    {
+      "title": "Ingest",
+      "tone": "in",
+      "flow": true,
+      "items": ["App logs", "Clickstream", "CDC from OLTP"]
+    },
+    {
+      "title": "Store",
+      "tone": "store",
+      "items": ["Object store", "Data lake", "OLAP warehouse"]
+    },
+    {
+      "title": "Compute",
+      "tone": "core",
+      "items": [
+        {"text": "Unified batch + stream layer", "span": true, "height": 1.6},
+        {"text": "dbt models", "chip": true, "tone": "out"},
+        {"text": "Airflow DAGs", "chip": true, "tone": "out"}
+      ]
+    },
+    {
+      "title": "Serve",
+      "tone": "out",
+      "items": [
+        {"text": "BI dashboards", "chip": true},
+        {"text": "Alerting", "chip": true},
+        {"text": "Feature store", "chip": true}
+      ]
+    }
+  ],
+  "links": [
+    {"from": 0, "to": 1, "tone": "in"},
+    {"from": 1, "to": 2, "tone": "store"},
+    {"from": 2, "to": 3, "tone": "core"}
+  ],
+  "notes": "Four-panel layout demo."
+}

@@ -1,0 +1,39 @@
+{
+  "title": "Service architecture",
+  "caption": "Client traffic enters through the gateway; each service owns its own store",
+  "theme": "ocean",
+  "direction": "LR",
+  "nodesep": 0.3,
+  "ranksep": 0.55,
+  "tones": {
+    "client": {"fill": "#E8F2FC", "stroke": "#2E75B6", "font": "#1B3A57"},
+    "service": {"fill": "#FDF0E4", "stroke": "#C55A11", "font": "#6B3410"},
+    "store": {"fill": "#E4F3F2", "stroke": "#2F8F8A", "font": "#10403E"}
+  },
+  "nodes": {
+    "web": {"label": "Web app", "tone": "client"},
+    "mobile": {"label": "Mobile", "tone": "client"},
+    "gw": {"label": "API gateway", "tone": "primary", "sub": "auth · rate limit"},
+    "orders": {"label": "Order service", "tone": "service", "sub": "gRPC"},
+    "users": {"label": "User service", "tone": "service", "sub": "gRPC"},
+    "pg": {"label": "Postgres", "shape": "cylinder", "tone": "store"},
+    "redis": {"label": "Redis", "shape": "cylinder", "tone": "store"},
+    "queue": {"label": "Event bus", "shape": "cylinder", "tone": "store"}
+  },
+  "clusters": [
+    {"label": "Clients", "nodes": ["web", "mobile"]},
+    {"label": "Services", "nodes": ["gw", "orders", "users"]},
+    {"label": "Data", "nodes": ["pg", "redis", "queue"]}
+  ],
+  "edges": [
+    {"from": "web", "to": "gw"},
+    {"from": "mobile", "to": "gw"},
+    {"from": "gw", "to": "orders"},
+    {"from": "gw", "to": "users"},
+    {"from": "orders", "to": "pg"},
+    {"from": "orders", "to": "queue"},
+    {"from": "users", "to": "pg"},
+    {"from": "users", "to": "redis", "style": "dashed", "tone": "muted"}
+  ],
+  "notes": "Microservice architecture demo."
+}

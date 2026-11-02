@@ -1,0 +1,7 @@
+# Runtime dependencies for the bundled renderer.
+# Graphviz (`dot`) is a system package, not a pip one:
+#   winget install --id Graphviz.Graphviz -e   (Windows)
+#   brew install graphviz                      (macOS)
+#   sudo apt install graphviz                  (Debian/Ubuntu)
+python-pptx>=0.6.21
+Pillow>=9.0
